@@ -15,6 +15,16 @@
 		7FBFFAA7260A5C9700F5D011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7C260A5C9500F5D011 /* ContentView.swift */; };
 		7FBFFAA8260A5C9700F5D011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7D260A5C9600F5D011 /* Assets.xcassets */; };
 		7FBFFAA9260A5C9700F5D011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7D260A5C9600F5D011 /* Assets.xcassets */; };
+		7FBFFABE260A5CD800F5D011 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBFFABD260A5CD800F5D011 /* Accelerate.framework */; };
+		7FBFFAC0260A5CE300F5D011 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FBFFABF260A5CE300F5D011 /* Accelerate.framework */; };
+		7FBFFAC6260A5D4100F5D011 /* packingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAC5260A5D4100F5D011 /* packingClass.swift */; };
+		7FBFFAC7260A5D4100F5D011 /* packingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAC5260A5D4100F5D011 /* packingClass.swift */; };
+		7FBFFAC8260A5D4100F5D011 /* packingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAC5260A5D4100F5D011 /* packingClass.swift */; };
+		7FBFFAC9260A5D4100F5D011 /* packingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAC5260A5D4100F5D011 /* packingClass.swift */; };
+		7FBFFACE260A5E3B00F5D011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7C260A5C9500F5D011 /* ContentView.swift */; };
+		7FBFFAD3260A5E3C00F5D011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7C260A5C9500F5D011 /* ContentView.swift */; };
+		7FBFFAD8260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7B260A5C9500F5D011 /* quantumMatricesApp.swift */; };
+		7FBFFADD260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7B260A5C9500F5D011 /* quantumMatricesApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +59,9 @@
 		7FBFFA9D260A5C9700F5D011 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FBFFAA1260A5C9700F5D011 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		7FBFFAA3260A5C9700F5D011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FBFFABD260A5CD800F5D011 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
+		7FBFFABF260A5CE300F5D011 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		7FBFFAC5260A5D4100F5D011 /* packingClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packingClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFABE260A5CD800F5D011 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFAC0260A5CE300F5D011 /* Accelerate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +107,7 @@
 				7FBFFA95260A5C9700F5D011 /* Tests iOS */,
 				7FBFFAA0260A5C9700F5D011 /* Tests macOS */,
 				7FBFFA83260A5C9600F5D011 /* Products */,
+				7FBFFABC260A5CD800F5D011 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +117,7 @@
 				7FBFFA7B260A5C9500F5D011 /* quantumMatricesApp.swift */,
 				7FBFFA7C260A5C9500F5D011 /* ContentView.swift */,
 				7FBFFA7D260A5C9600F5D011 /* Assets.xcassets */,
+				7FBFFAC5260A5D4100F5D011 /* packingClass.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -149,6 +166,15 @@
 				7FBFFAA3260A5C9700F5D011 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		7FBFFABC260A5CD800F5D011 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7FBFFABF260A5CE300F5D011 /* Accelerate.framework */,
+				7FBFFABD260A5CD800F5D011 /* Accelerate.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +336,7 @@
 			files = (
 				7FBFFAA6260A5C9700F5D011 /* ContentView.swift in Sources */,
 				7FBFFAA4260A5C9700F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFAC6260A5D4100F5D011 /* packingClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +346,7 @@
 			files = (
 				7FBFFAA7260A5C9700F5D011 /* ContentView.swift in Sources */,
 				7FBFFAA5260A5C9700F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFAC7260A5D4100F5D011 /* packingClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +354,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFAC8260A5D4100F5D011 /* packingClass.swift in Sources */,
 				7FBFFA97260A5C9700F5D011 /* Tests_iOS.swift in Sources */,
+				7FBFFACE260A5E3B00F5D011 /* ContentView.swift in Sources */,
+				7FBFFAD8260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +365,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFAC9260A5D4100F5D011 /* packingClass.swift in Sources */,
 				7FBFFAA2260A5C9700F5D011 /* Tests_macOS.swift in Sources */,
+				7FBFFAD3260A5E3C00F5D011 /* ContentView.swift in Sources */,
+				7FBFFADD260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
