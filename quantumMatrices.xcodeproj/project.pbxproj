@@ -25,6 +25,26 @@
 		7FBFFAD3260A5E3C00F5D011 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7C260A5C9500F5D011 /* ContentView.swift */; };
 		7FBFFAD8260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7B260A5C9500F5D011 /* quantumMatricesApp.swift */; };
 		7FBFFADD260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFA7B260A5C9500F5D011 /* quantumMatricesApp.swift */; };
+		7FBFFAE3260E3C4500F5D011 /* linearPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */; };
+		7FBFFAE4260E3C4500F5D011 /* linearPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */; };
+		7FBFFAE5260E3C4500F5D011 /* linearPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */; };
+		7FBFFAE6260E3C4500F5D011 /* linearPotential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */; };
+		7FBFFAF0260E647000F5D011 /* wavefunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAEF260E647000F5D011 /* wavefunctions.swift */; };
+		7FBFFAF1260E647000F5D011 /* wavefunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAEF260E647000F5D011 /* wavefunctions.swift */; };
+		7FBFFAF2260E647000F5D011 /* wavefunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAEF260E647000F5D011 /* wavefunctions.swift */; };
+		7FBFFAF3260E647000F5D011 /* wavefunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAEF260E647000F5D011 /* wavefunctions.swift */; };
+		7FBFFAF9260E682B00F5D011 /* potentialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAF8260E682B00F5D011 /* potentialClass.swift */; };
+		7FBFFAFA260E682B00F5D011 /* potentialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAF8260E682B00F5D011 /* potentialClass.swift */; };
+		7FBFFAFB260E682B00F5D011 /* potentialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAF8260E682B00F5D011 /* potentialClass.swift */; };
+		7FBFFAFC260E682B00F5D011 /* potentialClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFAF8260E682B00F5D011 /* potentialClass.swift */; };
+		7FBFFB02260E7EF000F5D011 /* arrayStdDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */; };
+		7FBFFB03260E7EF000F5D011 /* arrayStdDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */; };
+		7FBFFB04260E7EF000F5D011 /* arrayStdDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */; };
+		7FBFFB05260E7EF000F5D011 /* arrayStdDev.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */; };
+		7FBFFB0B260E8B9A00F5D011 /* hamiltonian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */; };
+		7FBFFB0C260E8B9A00F5D011 /* hamiltonian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */; };
+		7FBFFB0D260E8B9A00F5D011 /* hamiltonian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */; };
+		7FBFFB0E260E8B9A00F5D011 /* hamiltonian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +82,11 @@
 		7FBFFABD260A5CD800F5D011 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk/System/Library/Frameworks/Accelerate.framework; sourceTree = DEVELOPER_DIR; };
 		7FBFFABF260A5CE300F5D011 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		7FBFFAC5260A5D4100F5D011 /* packingClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = packingClass.swift; sourceTree = "<group>"; };
+		7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = linearPotential.swift; sourceTree = "<group>"; };
+		7FBFFAEF260E647000F5D011 /* wavefunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wavefunctions.swift; sourceTree = "<group>"; };
+		7FBFFAF8260E682B00F5D011 /* potentialClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = potentialClass.swift; sourceTree = "<group>"; };
+		7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arrayStdDev.swift; sourceTree = "<group>"; };
+		7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hamiltonian.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +143,11 @@
 				7FBFFA7C260A5C9500F5D011 /* ContentView.swift */,
 				7FBFFA7D260A5C9600F5D011 /* Assets.xcassets */,
 				7FBFFAC5260A5D4100F5D011 /* packingClass.swift */,
+				7FBFFAE2260E3C4500F5D011 /* linearPotential.swift */,
+				7FBFFAEF260E647000F5D011 /* wavefunctions.swift */,
+				7FBFFAF8260E682B00F5D011 /* potentialClass.swift */,
+				7FBFFB01260E7EF000F5D011 /* arrayStdDev.swift */,
+				7FBFFB0A260E8B9A00F5D011 /* hamiltonian.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -334,9 +364,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFB0B260E8B9A00F5D011 /* hamiltonian.swift in Sources */,
+				7FBFFAF0260E647000F5D011 /* wavefunctions.swift in Sources */,
 				7FBFFAA6260A5C9700F5D011 /* ContentView.swift in Sources */,
 				7FBFFAA4260A5C9700F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFB02260E7EF000F5D011 /* arrayStdDev.swift in Sources */,
 				7FBFFAC6260A5D4100F5D011 /* packingClass.swift in Sources */,
+				7FBFFAE3260E3C4500F5D011 /* linearPotential.swift in Sources */,
+				7FBFFAF9260E682B00F5D011 /* potentialClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,9 +379,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FBFFB0C260E8B9A00F5D011 /* hamiltonian.swift in Sources */,
+				7FBFFAF1260E647000F5D011 /* wavefunctions.swift in Sources */,
 				7FBFFAA7260A5C9700F5D011 /* ContentView.swift in Sources */,
 				7FBFFAA5260A5C9700F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFB03260E7EF000F5D011 /* arrayStdDev.swift in Sources */,
 				7FBFFAC7260A5D4100F5D011 /* packingClass.swift in Sources */,
+				7FBFFAE4260E3C4500F5D011 /* linearPotential.swift in Sources */,
+				7FBFFAFA260E682B00F5D011 /* potentialClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,8 +396,13 @@
 			files = (
 				7FBFFAC8260A5D4100F5D011 /* packingClass.swift in Sources */,
 				7FBFFA97260A5C9700F5D011 /* Tests_iOS.swift in Sources */,
+				7FBFFAE5260E3C4500F5D011 /* linearPotential.swift in Sources */,
+				7FBFFB0D260E8B9A00F5D011 /* hamiltonian.swift in Sources */,
 				7FBFFACE260A5E3B00F5D011 /* ContentView.swift in Sources */,
+				7FBFFAF2260E647000F5D011 /* wavefunctions.swift in Sources */,
+				7FBFFB04260E7EF000F5D011 /* arrayStdDev.swift in Sources */,
 				7FBFFAD8260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFAFB260E682B00F5D011 /* potentialClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,8 +412,13 @@
 			files = (
 				7FBFFAC9260A5D4100F5D011 /* packingClass.swift in Sources */,
 				7FBFFAA2260A5C9700F5D011 /* Tests_macOS.swift in Sources */,
+				7FBFFAE6260E3C4500F5D011 /* linearPotential.swift in Sources */,
+				7FBFFB0E260E8B9A00F5D011 /* hamiltonian.swift in Sources */,
 				7FBFFAD3260A5E3C00F5D011 /* ContentView.swift in Sources */,
+				7FBFFAF3260E647000F5D011 /* wavefunctions.swift in Sources */,
+				7FBFFB05260E7EF000F5D011 /* arrayStdDev.swift in Sources */,
 				7FBFFADD260A5E4900F5D011 /* quantumMatricesApp.swift in Sources */,
+				7FBFFAFC260E682B00F5D011 /* potentialClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
