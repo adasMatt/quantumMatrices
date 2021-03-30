@@ -8,6 +8,8 @@
 // see "struct eAndVecSolnsStruct" and "protocol Sortable" and "protocol energyAndEigenvectorSolutionsType"
 // see "var sortedSolnSet = solutionSetArray.map(eAndVecSolnsStruct.init)"
 
+// not sure but my Manipulate Matrices button might be in a silly place rn
+
 import SwiftUI
 import Accelerate
 import Foundation
@@ -34,14 +36,38 @@ struct ContentView: View {
     
     
     var body: some View {
-        VStack {
-
-            TextEditor(text: $numberOfWavefunctionsString)
-            TextEditor(text: $potentialTypeString)
-            TextEditor(text: $startXString)
-            TextEditor(text: $endXString)
-            TextEditor(text: $stepSizeString)
-            TextEditor(text: $resultsString)
+        HStack {
+            VStack {
+                Text("number of wavefunctions")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextEditor(text: $numberOfWavefunctionsString)
+                
+                Text("potential type (0: Inf Sq Well or 1: Linear)")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextEditor(text: $potentialTypeString)
+            }
+            VStack {
+                Text("start x")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextEditor(text: $startXString)
+                
+                Text("end x")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextEditor(text: $endXString)
+                
+                Text("step size")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextEditor(text: $stepSizeString)
+            }
+            /*Text("result")
+                .padding(.top)
+                .padding(.bottom, 0)
+            TextEditor(text: $resultsString)*/
 
             Button("Manipulate Matrices", action: runCalculation)
             
