@@ -4,11 +4,9 @@
 //
 //  Created by Matthew Adas on 3/23/21.
 //
-// need to fill Eigenvector array instead of returnString
-// need E instead of returnString
 
-// see "eAndVecSolnsStruct" and "protocol Sortable" and "protocol energyAndEigenvectorSolutionsType"
-
+// see "struct eAndVecSolnsStruct" and "protocol Sortable" and "protocol energyAndEigenvectorSolutionsType"
+// see "var sortedSolnSet = solutionSetArray.map(eAndVecSolnsStruct.init)"
 
 import SwiftUI
 import Accelerate
@@ -584,8 +582,9 @@ struct ContentView: View {
     
     
     // pretty close but still so far off
-    struct eAndVecSolnsStruct : energyAndEigenvectorSolutionsType {
+    struct eAndVecSolnsStruct : energyAndEigenvectorSolutionsTypeProtocol {
         
+        // Do I need to change this energyProperties to be something of my typealias rather than Double:Sortable
         let energyProperties: [Double:Sortable]
         
         subscript(key: Double, _: [Double]) -> Sortable? {
@@ -603,7 +602,7 @@ protocol Sortable {
     func isOrderedBefore(_: Sortable, ascending: Bool) throws -> Bool
 }
 
-protocol energyAndEigenvectorSolutionsType { // ThingType will be replaced by my own typealias I think
+protocol energyAndEigenvectorSolutionsTypeProtocol { // ThingType will be replaced by my own typealias I think
     subscript(_: Double, _: [Double]) -> Sortable? { get }
 }
 
