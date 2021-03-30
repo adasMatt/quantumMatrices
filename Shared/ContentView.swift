@@ -7,9 +7,12 @@
 // need to fill Eigenvector array instead of returnString
 // need E instead of returnString
 
+// see "eAndVecSolnsStruct" and "protocol Sortable" and "protocol energyAndEigenvectorSolutionsType"
+
 
 import SwiftUI
 import Accelerate
+import Foundation
 
 struct ContentView: View {
     
@@ -25,7 +28,7 @@ struct ContentView: View {
     @State var currentPotential = potentialClass()
     @State var hamiltonian = hamiltonianClass()
     
-    typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])]
+    typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])] // array to hold energies and their eigenvectors?
     
     //let hPlanck = 4.135667696e-15                            // eV*s ...wikipedia
     let electronMass = 0.51099895000                        // ev/c^2 ...wikipedia
@@ -422,7 +425,7 @@ struct ContentView: View {
         var N4 = Int32(sqrt(Double(arrayForDiagonalization.count)))
         
         var flatArray = arrayForDiagonalization
-        var solutionsMatrix: energyAndEigenvectorSolutions                      // ??????????????????????????????????????????????????
+        var solutionSetArray: energyAndEigenvectorSolutions = [] // an array representing the set of solutions for all energies with their corresponding eigenvectors. Needs to be sorted still
         
         var error : Int32 = 0
         var lwork = Int32(-1)
@@ -465,27 +468,25 @@ struct ContentView: View {
         
         dgeev_(UnsafeMutablePointer(mutating: ("N" as NSString).utf8String), UnsafeMutablePointer(mutating: ("V" as NSString).utf8String), &N, &flatArray, &N2, &wr, &wi, &vl, &N3, &vr, &N4, &workspace, &lwork, &error)
         
-        var eigValueDouble = 0.0
+        var energyValueDouble = 0.0
         var eigVectorDoubleArray: [Double] = []
         
         if (error == 0)
         {
             for index in 0..<wi.count      /* transform the returned matrices to eigenvalues and eigenvectors */
             {
-                
-                // should  I change this entirely to if wi[index] == 0 ... else not zero?
-                
-                if (wi[index]>=0.0)
-                {
-                    returnString += "Eigenvalue\n\(wr[index]) + \(wi[index])i\n\n"
-                    
+                // wi[index] = nonzero is bad for physical solutions
+                //if (wi[index]>=0.0)
+                if (wi[index]==0.0){
                     // need E instead of returnString
                     // typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])]
-                    eigValueDouble = wr[index]
+                    energyValueDouble = wr[index]
+                    returnString += "Eigenvalue\n\(wr[index]) + \(wi[index])i\n\n"
                 }
-                else
-                {
-                    returnString += "Eigenvalue\n\(wr[index]) - \(fabs(wi[index]))i\n\n"
+                
+                else{
+                    //returnString += "Eigenvalue\n\(wr[index]) - \(fabs(wi[index]))i\n\n"
+                    returnString += "imaginary values are bad"
                 }
                 
                 returnString += "Eigenvector\n"
@@ -512,11 +513,11 @@ struct ContentView: View {
                     // typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])]
                     if(wi[index]==0)
                     {
-                        
+                        eigVectorDoubleArray[Int(j)] = Double(vr[Int(index)*(Int(N))+Int(j)]) // make set of eigenvectors for current energy
                         returnString += "\(vr[Int(index)*(Int(N))+Int(j)]) + 0.0i, \n" /* print x */
                         
                     }
-                    else if(wi[index]>0)
+                    /*else if(wi[index]>0)
                     {
                         if(vr[Int(index)*(Int(N))+Int(j)+Int(N)]>=0)
                         {
@@ -539,9 +540,12 @@ struct ContentView: View {
                             returnString += "\(vr[Int(index)*(Int(N))+Int(j)-Int(N)]) + \(fabs(vr[Int(index)*(Int(N))+Int(j)]))i, \n"
                             
                         }
+                    }*/
+                    else {
+                        returnString += "imaginary values are bad"
                     }
                 }
-                
+                solutionSetArray.append((E: energyValueDouble, EigenVector: eigVectorDoubleArray)) // append each soln to the set of solns
                 /* Remove the last , in the returned Eigenvector */
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
@@ -551,13 +555,96 @@ struct ContentView: View {
         }
         else {print("An error occurred\n")}
         
-        return (returnString)
+        // Now the solutionSetArray needs to be sorted by Energy value, see protocol ThingType article
+        var sortedSolnSet = solutionSetArray.map(eAndVecSolnsStruct.init)
+        
+        /* // modify this for my own purposes
+         let data: [[String:Sortable]] = [
+             ["id": 1, "description": "one"],
+             ["id": 2, "description": "two"],
+             ["id": 3, "description": "three"],
+             ["id": 4, "description": "four"],
+             ["id": 4, "description": "four"]
+         ]
+         var things = data.map(Thing.init)
+
+         things.sortInPlaceBy("id")
+
+         things
+             .map{ $0["id"]! } // [1, 2, 3, 4]
+
+         things.sortInPlaceBy("description")
+
+         things
+             .map{ $0["description"]! } // ["four", "one", "three", "two"]
+         */
+        
+        return solutionSetArray
     }
     
     
-    
+    // pretty close but still so far off
+    struct eAndVecSolnsStruct : energyAndEigenvectorSolutionsType {
+        
+        let energyProperties: [Double:Sortable]
+        
+        subscript(key: Double, _: [Double]) -> Sortable? {
+            return energyProperties[key]
+        }
 
+        //subscript(key: Double) -> Sortable? {
+        //    return properties[key]
+        //}
+    }
 }
+
+// https://stackoverflow.com/questions/34074963/swift-sorting-on-arbitrary-types
+protocol Sortable {
+    func isOrderedBefore(_: Sortable, ascending: Bool) throws -> Bool
+}
+
+protocol energyAndEigenvectorSolutionsType { // ThingType will be replaced by my own typealias I think
+    subscript(_: Double, _: [Double]) -> Sortable? { get }
+}
+
+
+/*
+let data: [[String:Sortable]] = [ // but I change String to Double for my purposes?
+    ["id": 1, "description": "one"], // change from "id": 1 -> energy:
+    ["id": 2, "description": "two"], // these arrays are [Int, String] ???
+    ["id": 3, "description": "three"], //whereas my arrays are [Double, [Double]]
+    ["id": 4, "description": "four"],
+    ["id": 4, "description": "four"]
+]
+
+var things = data.map(Thing.init)
+
+things.sortInPlaceBy("id")
+
+things
+    .map{ $0["id"]! } // [1, 2, 3, 4]   // id sorts numerically
+
+things.sortInPlaceBy("description")
+
+things
+    .map{ $0["description"]! } // ["four", "one", "three", "two"] // description sorts alphabetically
+
+// do i even need this part? Not sure where "sortInPlace" fits in as it gives me errors
+// had to fix this extension line  https://stackoverflow.com/questions/41391043/whats-the-meaning-of-collection-where-indices-iterator-element-index
+extension MutableCollection where Indices.Iterator.Element : ThingType {
+    mutating func sortInPlaceBy(key: Double, ascending: Bool = true) {
+        sortInPlace {
+            guard let lhs = $0[key], let rhs = $1[key] else {
+                return false // TODO: nil handling
+            }
+            guard let b = (try? lhs.isOrderedBefore(rhs, ascending: ascending)) else {
+                return false // TODO: handle SortableError
+            }
+            return b
+        }
+    }
+} */
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
