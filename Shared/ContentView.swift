@@ -31,23 +31,46 @@ struct ContentView: View {
     let electronMass = 0.51099895000                        // ev/c^2 ...wikipedia
     let hbarSquaredOverElectronMass = 7.61996423107385308868  // ev * ang^2
     
-    
+    // looks like dookie but better than before
     var body: some View {
-        VStack {
 
-            TextEditor(text: $numberOfWavefunctionsString)
-            TextEditor(text: $potentialTypeString)
-            TextEditor(text: $startXString)
-            TextEditor(text: $endXString)
-            TextEditor(text: $stepSizeString)
-            TextEditor(text: $resultsString)
+            VStack {
+                Text("number of wavefunctions")
+
+                TextField("wavefunction", text: $numberOfWavefunctionsString)
+            }
+            VStack {
+                Text("potential type (0: Inf Sq Well or 1: Linear)")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextField("potential", text: $potentialTypeString)
+            }
+            VStack {
+                Text("start x")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextField("", text: $startXString)
+            }
+            VStack {
+                Text("end x")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextField("", text: $endXString)
+            }
+            VStack {
+                Text("step size")
+                    .padding(.top)
+                    .padding(.bottom, 0)
+                TextField("", text: $stepSizeString)
+            }
 
             Button("Manipulate Matrices", action: runCalculation)
             
-        }
+        
        // .frame(minHeight: 300, maxHeight: 800)
        // .frame(minWidth: 300, maxWidth: 800)
         .padding()
+    
     }
     
     // is this going to be a matrix?
@@ -422,7 +445,7 @@ struct ContentView: View {
         var N4 = Int32(sqrt(Double(arrayForDiagonalization.count)))
         
         var flatArray = arrayForDiagonalization
-        var solutionsMatrix: energyAndEigenvectorSolutions                      // ??????????????????????????????????????????????????
+        var solutionSetArray: energyAndEigenvectorSolutions = []                    // ??????????????????????????????????????????????????
         
         var error : Int32 = 0
         var lwork = Int32(-1)
@@ -465,7 +488,7 @@ struct ContentView: View {
         
         dgeev_(UnsafeMutablePointer(mutating: ("N" as NSString).utf8String), UnsafeMutablePointer(mutating: ("V" as NSString).utf8String), &N, &flatArray, &N2, &wr, &wi, &vl, &N3, &vr, &N4, &workspace, &lwork, &error)
         
-        var eigValueDouble = 0.0
+        var energyValueDouble = 0.0
         var eigVectorDoubleArray: [Double] = []
         
         if (error == 0)
@@ -481,7 +504,7 @@ struct ContentView: View {
                     
                     // need E instead of returnString
                     // typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])]
-                    eigValueDouble = wr[index]
+                    energyValueDouble = wr[index]
                 }
                 else
                 {
@@ -541,7 +564,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                
+                solutionSetArray.append((E: energyValueDouble, EigenVector: eigVectorDoubleArray)) // append each soln to the set of solns
                 /* Remove the last , in the returned Eigenvector */
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
@@ -551,7 +574,7 @@ struct ContentView: View {
         }
         else {print("An error occurred\n")}
         
-        return (returnString)
+        return solutionSetArray
     }
     
     
