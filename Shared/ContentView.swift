@@ -27,6 +27,7 @@ struct ContentView: View {
     @State var wavefunctionArray :[wavefunctions] = []
     @State var currentPotential = potentialClass()
     @State var hamiltonian = hamiltonianClass()
+    @State var eigenData = EigenData(energy: 0.0, coeffs: [])
     
     typealias energyAndEigenvectorSolutions = [(E: Double, EigenVector: [Double])] // array to hold energies and their eigenvectors?
     
@@ -449,7 +450,7 @@ struct ContentView: View {
         var N4 = Int32(sqrt(Double(arrayForDiagonalization.count)))
         
         var flatArray = arrayForDiagonalization
-        var solutionSetArray: energyAndEigenvectorSolutions = [] // an array representing the set of solutions for all energies with their corresponding eigenvectors. Needs to be sorted still
+        var sortedSolutionSetArray: energyAndEigenvectorSolutions = [] // an array representing the set of solutions for all energies with their corresponding eigenvectors. Needs to be sorted still
         
         var error : Int32 = 0
         var lwork = Int32(-1)
@@ -569,106 +570,59 @@ struct ContentView: View {
                         returnString += "imaginary values are bad"
                     }
                 }
-                solutionSetArray.append((E: energyValueDouble, EigenVector: eigVectorDoubleArray)) // append each soln to the set of solns
+                
+                // https://developer.apple.com/forums/thread/18338
+                // the array solutionSetArray with separate instances of the class EigenData! :)
+                solutionSetArray.append((E: energyValueDouble, EigenVector: eigVectorDoubleArray))
+                
+                /*
+                // the array allPlayers with separate instances of the class Player
+                
+                let allPlayers = [
+                    Player(id: "Foo", rank: 2),
+                    Player(id: "Bar", rank: 1),
+                    Player(id: "Baz", rank: 3)
+                ]*/
+                
+                
                 /* Remove the last , in the returned Eigenvector */
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
                 returnString.remove(at: returnString.index(before: returnString.endIndex))
                 returnString += "]\n\n"
             }
+            
+            // has no member 'sorted' ...ouch
+            let sortedByEnergy = sorted(solutionSetArray) { $0.Energy < $1.Energy }
+            //let sortedByRank = sorted(allPlayers){$0.rank < $1.rank}
         }
         else {print("An error occurred\n")}
         
-        // Now the solutionSetArray needs to be sorted by Energy value, see protocol ThingType article
-        var sortedSolnSet = solutionSetArray.map(eAndVecSolnsStruct.init)
-        
-        /* // modify this for my own purposes
-         let data: [[String:Sortable]] = [
-             ["id": 1, "description": "one"],
-             ["id": 2, "description": "two"],
-             ["id": 3, "description": "three"],
-             ["id": 4, "description": "four"],
-             ["id": 4, "description": "four"]
-         ]
-         var things = data.map(Thing.init)
-
-         things.sortInPlaceBy("id")
-
-         things
-             .map{ $0["id"]! } // [1, 2, 3, 4]
-
-         things.sortInPlaceBy("description")
-
-         things
-             .map{ $0["description"]! } // ["four", "one", "three", "two"]
-         */
         
         return solutionSetArray
     }
     
     
-    // pretty close but still so far off
-    struct eAndVecSolnsStruct : energyAndEigenvectorSolutionsTypeProtocol {
-        
-        // Do I need to change this energyProperties to be something of my typealias rather than Double:Sortable
-        let energyProperties: [Double:Sortable]
-        
-        subscript(key: Double, _: [Double]) -> Sortable? {
-            return energyProperties[key]
-        }
+}
 
-        //subscript(key: Double) -> Sortable? {
-        //    return properties[key]
-        //}
+/// The intention is to sort by energy.
+class EigenData {
+    /*
+    struct EigenCoefficients {
+        var energy = 0.0
+        var coeffs: [Double] = []
+    }*/
+    
+    //var eigenCoes = EigenCoefficients()
+    var classEnergy = 0.0
+    var classCoeffs: [Double] = []
+    
+    init(energy: Double, coeffs: [Double]) {
+        self.classEnergy = energy
+        self.classCoeffs = coeffs
     }
+    
 }
-
-// https://stackoverflow.com/questions/34074963/swift-sorting-on-arbitrary-types
-protocol Sortable {
-    func isOrderedBefore(_: Sortable, ascending: Bool) throws -> Bool
-}
-
-protocol energyAndEigenvectorSolutionsTypeProtocol { // ThingType will be replaced by my own typealias I think
-    subscript(_: Double, _: [Double]) -> Sortable? { get }
-}
-
-
-/*
-let data: [[String:Sortable]] = [ // but I change String to Double for my purposes?
-    ["id": 1, "description": "one"], // change from "id": 1 -> energy:
-    ["id": 2, "description": "two"], // these arrays are [Int, String] ???
-    ["id": 3, "description": "three"], //whereas my arrays are [Double, [Double]]
-    ["id": 4, "description": "four"],
-    ["id": 4, "description": "four"]
-]
-
-var things = data.map(Thing.init)
-
-things.sortInPlaceBy("id")
-
-things
-    .map{ $0["id"]! } // [1, 2, 3, 4]   // id sorts numerically
-
-things.sortInPlaceBy("description")
-
-things
-    .map{ $0["description"]! } // ["four", "one", "three", "two"] // description sorts alphabetically
-
-// do i even need this part? Not sure where "sortInPlace" fits in as it gives me errors
-// had to fix this extension line  https://stackoverflow.com/questions/41391043/whats-the-meaning-of-collection-where-indices-iterator-element-index
-extension MutableCollection where Indices.Iterator.Element : ThingType {
-    mutating func sortInPlaceBy(key: Double, ascending: Bool = true) {
-        sortInPlace {
-            guard let lhs = $0[key], let rhs = $1[key] else {
-                return false // TODO: nil handling
-            }
-            guard let b = (try? lhs.isOrderedBefore(rhs, ascending: ascending)) else {
-                return false // TODO: handle SortableError
-            }
-            return b
-        }
-    }
-} */
 
 
 struct ContentView_Previews: PreviewProvider {
